@@ -1,0 +1,18 @@
+<nav class="p-4 bg-sky-500">
+  <div class="container">
+    <ul class="inline-block">
+      <li><%= link_to "Webstore", root_path, class: "p-2 rounded" %></li>
+    </ul>
+
+    <% #if @user and @user.is_admin %>
+
+    <ul class="inline-block right-0">
+      <li class="nav-link"><%= link_to "Dashboard", admin_dashboard_path, class: "" %></li>
+      <li class="nav-link"><%= link_to "Users", admin_users_path, class: "" %></li>
+      <li class="nav-link"><%= link_to "Products", admin_products_path, class: "" %></li>
+    </ul>
+
+    <% #end %>
+    
+  </div>
+</nav>

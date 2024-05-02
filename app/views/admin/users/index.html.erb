@@ -1,0 +1,34 @@
+<div>
+  <h1 class="font-bold text-4xl">Admin::Users#index</h1>
+  <p>Find me in app/views/admin/users/index.html.erb</p>
+
+  <h3>Users</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="table-header">Username</th>
+        <th class="table-header">Email</th>
+        <th class="table-header">Validated email</th>
+        <th class="table-header">Created at</th>
+        <th class="table-header">Updated at</th>
+        <th class="table-header">Is admin</th>
+        <th class="table-header">Utils</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class="table-row">
+          <td class="p-2"><%= user.username %></td>
+          <td class="p-2"><%= user.email %></td>
+          <td class="p-2"><%= user.is_email_validated %></td>
+          <td class="p-2"><%= localize(user.created_at, :format => :long) %></td>
+          <td class="p-2"><%= localize(user.updated_at, :format => :long) %></td>
+          <td class="p-2"><%= user.is_admin %></td>
+          <td class="p-2"><%= button_to "Delete", @post, method: :delete, class:"button" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
