@@ -8,7 +8,7 @@
     }
 
     .button {
-        @apply inline-block px-2 bg-sky-400 hover:bg-sky-600 hover:text-white rounded;
+        @apply inline-block px-2 py-1 bg-sky-400 hover:bg-sky-600 rounded text-white cursor-pointer;
     }
 
     .table {
@@ -29,5 +29,9 @@
 
     .table-row:nth-child(2n + 1) {
         @apply bg-sky-200 hover:bg-sky-800;
+    }
+
+    .link {
+        @apply text-blue-500 underline hover:text-blue-600 hover:no-underline;
     }
 }

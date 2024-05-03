@@ -8,9 +8,9 @@
       <tr>
         <th class="table-header">Username</th>
         <th class="table-header">Email</th>
-        <th class="table-header">Validated email</th>
         <th class="table-header">Created at</th>
         <th class="table-header">Updated at</th>
+        <th class="table-header">Validated email</th>
         <th class="table-header">Is admin</th>
         <th class="table-header">Utils</th>
       </tr>
@@ -21,14 +21,18 @@
         <tr class="table-row">
           <td class="p-2"><%= user.username %></td>
           <td class="p-2"><%= user.email %></td>
+          <td class="p-2"><%= localize(user.created_at, :format => :long) %> (UTC)</td>
+          <td class="p-2"><%= localize(user.updated_at, :format => :long) %> (UTC)</td>
           <td class="p-2"><%= user.is_email_validated %></td>
-          <td class="p-2"><%= localize(user.created_at, :format => :long) %></td>
-          <td class="p-2"><%= localize(user.updated_at, :format => :long) %></td>
           <td class="p-2"><%= user.is_admin %></td>
-          <td class="p-2"><%= button_to "Delete", @post, method: :delete, class:"button" %></td>
+          <td class="p-2"><%= button_to "Delete", { id: user.id }, method: :delete, class: "button" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
+<%= button_to "<", { offset: 10 }, method: :get, class: "button" %>
+<%= button_to ">", { offset: 20 }, method: :get, class: "button" %>
+
 
 </div>

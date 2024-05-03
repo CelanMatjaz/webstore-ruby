@@ -1,0 +1,13 @@
+<% if @messages %>
+  <div id="messages-container" class="mb-2">
+    <% i = 0 %>
+    <% @errors.each do |error| %>
+      <div class="message bg-green-200 p-1 border-green-600 rounded border-solid border-2 mb-2 cursor-pointer"> <%= error %> </div>
+      <% i = i + 1 %>
+    <% end %>
+
+    <button class="button" onclick="document.getElementById('messages-container').remove();">
+      Clear messages
+    </button>
+  </div>
+<% end %>

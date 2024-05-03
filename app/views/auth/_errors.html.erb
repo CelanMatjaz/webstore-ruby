@@ -1,0 +1,15 @@
+<% if @errors %>
+  <div id="errors-container" class="mb-2">
+    <% i = 0 %>
+    <% @errors.each do |error| %>
+      <div class="error bg-red-200 p-1 border-red-600 rounded border-solid border-2 mb-2 cursor-pointer"> <%= error %> </div>
+      <% i = i + 1 %>
+    <% end %>
+
+    <button class="button" onclick="document.getElementById('errors-container').remove();">
+      Clear errors
+    </button>
+  </div>
+<% end %>
+
+

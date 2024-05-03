@@ -1,0 +1,23 @@
+<div>
+  <form class="max-w-xl mx-auto" action="/auth/login" method="post">
+    <%= render 'auth/messages' %>
+    <%= render 'auth/errors' %>
+    <div class="mb-4">
+      <%= label :user, :username, class: "block mb-2" %>
+      <%= text_field :user, :username, class: "w-full rounded" %>
+    </div>
+
+    <div class="mb-4">
+      <%= label :user, :password, class: "block mb-2" %>
+      <%= password_field :user, :password, class: "w-full rounded" %>
+    </div>
+
+    <div class="mb-4">
+      <%= link_to "Register", register_path, class: "link" %> 
+    </div>
+
+    <div class="mb-4">
+      <button class="button p-2" type="submit">Login</button>
+    </div>
+  </form> 
+</div>

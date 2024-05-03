@@ -75,11 +75,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_230311) do
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
-    t.string "password"
-    t.boolean "is_email_validated"
+    t.string "password_digest"
+    t.boolean "is_email_validated", default: false
+    t.boolean "is_admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_admin", default: false
   end
 
   add_foreign_key "addresses", "users", column: "users_id"
