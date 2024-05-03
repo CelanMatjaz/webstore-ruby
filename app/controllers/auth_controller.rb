@@ -1,4 +1,7 @@
 class AuthController < ApplicationController
+  before_action :check_if_not_logged_in, only: %i[show_login show_register login register]
+  before_action :check_if_logged_in, only: %i[logout]
+
   def show_login; end
 
   def show_register; end
@@ -32,7 +35,12 @@ class AuthController < ApplicationController
     end
   end
 
-  def logout; end
+  def logout
+    reset_session
+    respond_to do |format|
+      format.html { redirect_to login_path, notice: 'New user registered' }
+    end
+  end
 
   private
 
@@ -43,5 +51,13 @@ class AuthController < ApplicationController
   def create_session(user)
     session[:user_id] = user.id
     session[:user] = user
+  end
+
+  def check_if_logged_in
+    redirect_to root_path if session[:user].nil?
+  end
+
+  def check_if_not_logged_in
+    redirect_to root_path unless session[:user].nil?
   end
 end

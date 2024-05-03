@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :check_if_admin
   before_action :set_user, only: %i[show edit delete]
   before_action :set_defaults
 
@@ -30,5 +31,9 @@ class Admin::UsersController < ApplicationController
   def set_defaults
     @count = params[:count] || 10
     @offset = params[:offset] || 0
+  end
+
+  def check_if_admin
+    redirect_to root_path if session[:user].nil? || !session[:user][:is_admin]
   end
 end

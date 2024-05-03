@@ -18,7 +18,7 @@
 
     <% if session[:user_id] %>
 
-      <li class="inline-block"><%= button_to "Logout", action: auth_logout_path, method: "post", form_class: "nav-link" %></li>
+      <li class="inline-block"><%= button_to "Logout", auth_logout_path, method: "post", form_class: "nav-link" %></li>
       <li class="inline-block"><%= link_to "Account", admin_users_path, class: "nav-link" %></li>
 
     <% else %>
