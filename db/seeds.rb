@@ -9,4 +9,4 @@
 #   end
 
 User.create!(username: 'admin123', email: 'admin@admin.com', password: 'admin_password',
-             password_confirmation: 'admin_password')
+             password_confirmation: 'admin_password', is_admin: true)

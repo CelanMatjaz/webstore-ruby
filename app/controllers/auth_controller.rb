@@ -14,7 +14,7 @@ class AuthController < ApplicationController
         create_session(found_user)
         format.html { redirect_to root_path, notice: 'User logged in' }
       else
-        @errors = found_user.errors.full_messages
+        @errors = ['Incorrect password']
         format.html do
           render :show_login, status: :unprocessable_entity, locals: { errors: @errors }
         end
@@ -38,7 +38,7 @@ class AuthController < ApplicationController
   def logout
     reset_session
     respond_to do |format|
-      format.html { redirect_to login_path, notice: 'New user registered' }
+      format.html { redirect_to login_path }
     end
   end
 
@@ -51,6 +51,8 @@ class AuthController < ApplicationController
   def create_session(user)
     session[:user_id] = user.id
     session[:user] = user
+    session[:is_admin] = user.is_admin
+    session[:username] = user.username
   end
 
   def check_if_logged_in

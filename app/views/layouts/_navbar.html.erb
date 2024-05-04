@@ -4,7 +4,11 @@
       <li><%= link_to "Webstore", root_path, class: "p-2 rounded text-gray-700" %></li>
     </ul>
 
-    <% if session[:user_id] && session[:user][:is_admin] %>
+    <% if session[:user_id] && session[:is_admin] %>
+
+    <div class="inline-block right-0">
+      Welcome, <strong><%= session[:username] %></strong>
+    </div>
 
     <ul class="inline-block right-0">
       <li class="inline-block"><%= link_to "Dashboard", admin_dashboard_path, class: "nav-link" %></li>
@@ -18,13 +22,13 @@
 
     <% if session[:user_id] %>
 
-      <li class="inline-block"><%= button_to "Logout", auth_logout_path, method: "post", form_class: "nav-link" %></li>
       <li class="inline-block"><%= link_to "Account", admin_users_path, class: "nav-link" %></li>
+      <li class="inline-block"><%= button_to "Logout", auth_logout_path, method: "post", form_class: "nav-link" %></li>
 
     <% else %>
 
-      <li class="inline-block"><%= link_to "Login", login_path, class: "nav-link" %></li>
       <li class="inline-block"><%= link_to "Register", register_path, class: "nav-link" %></li>
+      <li class="inline-block"><%= link_to "Login", login_path, class: "nav-link" %></li>
 
     <% end %>
 
