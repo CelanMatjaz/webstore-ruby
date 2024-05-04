@@ -1,0 +1,2 @@
+class ProductSubgroup < ApplicationRecord
+end
