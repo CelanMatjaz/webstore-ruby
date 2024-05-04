@@ -1,0 +1,63 @@
+<!-- 
+  DROPDOWN PARTIAL
+  To render items, provide an array of groups when calling render method
+
+  Group object layout:
+  {
+    :title // String of the group title
+    :items // Array of items to render, item object layout shown below
+  }
+
+  Item object layout:
+  {
+    :label    // String of the label to show 
+    :is_link  // Boolean to check if the item should be rendered as a link
+    :path     // Path to which the <a> tag will link to (ignored if is_link is false) 
+  }
+
+  Example: of function call without erb tags
+    render 'layouts/dropdown', groups: [
+      {
+        title: 'Group 1',
+        items: [
+          { is_link: true, label: 'Test text 1', path: root_path },
+          { is_link: false, label: 'Test text 2' },
+        ],
+      }
+    ] 
+-->
+
+<div class="dropdown" onmouseleave="setDropdownVisibility(this, false)" onclick="toggleDropdownVisibility(this)">
+  <div class="flex items-center">
+    <div class="dropdown-label" onmouseover="setDropdownVisibility(this.parentElement.parentElement, true);" >
+      <%= title %>
+    </div>
+    <div class="dropdown-arrow dropdown-arrow-left"></div>
+  </div>
+  <div class="dropdown-list-container">
+    <ul class="dropdown-list">
+      <% groups.each do |group| %>
+        <% if group[:title] %>
+          <li class="dropdown-group-title dropdown-link">
+            <%= group[:title] %>
+          </li>
+        <% end %>
+    
+        <% if !group[:items] then next end %>
+    
+        <% group[:items].each do |item| %>
+          <% if item[:is_link] %>
+            <li>
+              <%= link_to item[:label], item[:path], class: "dropdown-link hoverable" %>
+            </li>
+          <% else %>
+            <li class="dropdown-link">
+              <%= item[:label] %>
+            </li>
+          <% end %>
+        <% end %>
+    
+      <% end %>
+    </ul>
+  </div>
+</div>
