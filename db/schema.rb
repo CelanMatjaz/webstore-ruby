@@ -15,7 +15,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "country", limit: 32, null: false
@@ -25,18 +24,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.decimal "house_number", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_addresses_on_user_id"
-    t.index ["users_id"], name: "index_addresses_on_users_id"
   end
 
   create_table "card_infos", force: :cascade do |t|
-    t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "card_number"
     t.decimal "expiry_date"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_card_infos_on_user_id"
-    t.index ["users_id"], name: "index_card_infos_on_users_id"
   end
 
   create_table "order_products", force: :cascade do |t|
@@ -47,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.integer "quantity", default: 1, null: false
     t.decimal "price", null: false
     t.string "currency", null: false
-    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying, 'EUR'::character varying, 'GBP'::character varying]::text[])", name: "currency_check"
+    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "currency_check"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -63,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
+    t.index ["name"], name: "index_product_groups_on_name", unique: true
   end
 
   create_table "product_prices", force: :cascade do |t|
@@ -73,7 +70,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.string "currency", null: false
     t.index ["currency", "product_id"], name: "index_product_prices_on_currency_and_product_id", unique: true
     t.index ["product_id"], name: "index_product_prices_on_product_id"
-    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying, 'EUR'::character varying, 'GBP'::character varying]::text[])", name: "currency_check"
+    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "currency_check"
   end
 
   create_table "product_subgroups", force: :cascade do |t|
@@ -81,9 +78,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
     t.bigint "product_group_id"
-    t.bigint "product_groups_id"
+    t.index ["name"], name: "index_product_subgroups_on_name", unique: true
     t.index ["product_group_id"], name: "index_product_subgroups_on_product_group_id"
-    t.index ["product_groups_id"], name: "index_product_subgroups_on_product_groups_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -92,12 +88,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.string "name", limit: 32, null: false
     t.integer "quantity"
     t.string "image_url", limit: 64
-    t.bigint "product_subgroups_id"
-    t.index ["product_subgroups_id"], name: "index_products_on_product_subgroups_id"
+    t.bigint "product_subgroup_id"
+    t.index ["product_subgroup_id"], name: "index_products_on_product_subgroup_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username", limit: 20, null: false
@@ -105,20 +100,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_04_224313) do
     t.string "password_digest", limit: 64, null: false
     t.boolean "is_email_validated", default: false, null: false
     t.boolean "is_admin", default: false, null: false
-    t.index ["users_id"], name: "index_users_on_users_id"
   end
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "addresses", "users", column: "users_id"
   add_foreign_key "card_infos", "users"
-  add_foreign_key "card_infos", "users", column: "users_id"
   add_foreign_key "order_products", "orders"
   add_foreign_key "order_products", "products"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
   add_foreign_key "product_prices", "products"
   add_foreign_key "product_subgroups", "product_groups"
-  add_foreign_key "product_subgroups", "product_groups", column: "product_groups_id"
-  add_foreign_key "products", "product_subgroups", column: "product_subgroups_id"
-  add_foreign_key "users", "users", column: "users_id"
+  add_foreign_key "products", "product_subgroups"
 end

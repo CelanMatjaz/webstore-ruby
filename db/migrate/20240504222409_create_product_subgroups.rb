@@ -5,6 +5,7 @@ class CreateProductSubgroups < ActiveRecord::Migration[7.1]
     end
 
     add_column(:product_subgroups, :name, :string, null: false, default: '')
+    add_index(:product_subgroups, :name, unique: true)
 
     add_reference(:product_subgroups, :product_group, foreign_key: true)
   end

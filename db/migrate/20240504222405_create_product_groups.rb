@@ -5,5 +5,6 @@ class CreateProductGroups < ActiveRecord::Migration[7.1]
     end
 
     add_column(:product_groups, :name, :string, null: false, default: '')
+    add_index(:product_groups, :name, unique: true)
   end
 end
