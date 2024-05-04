@@ -28,8 +28,8 @@
 -->
 
 <div class="dropdown" onmouseleave="setDropdownVisibility(this, false)" onclick="toggleDropdownVisibility(this)">
-  <div class="flex items-center">
-    <div class="dropdown-label" onmouseover="setDropdownVisibility(this.parentElement.parentElement, true);" >
+  <div class="flex items-center" onmouseover="setDropdownVisibility(this.parentElement, true);">
+    <div class="dropdown-label">
       <%= title %>
     </div>
     <div class="dropdown-arrow dropdown-arrow-left"></div>
