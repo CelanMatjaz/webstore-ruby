@@ -1,4 +1,6 @@
 <!-- 
+  TODO: remove
+
   DROPDOWN PARTIAL
   To render items, provide an array of groups when calling render method
 
@@ -46,13 +48,18 @@
         <% if !group[:items] then next end %>
     
         <% group[:items].each do |item| %>
-          <% if item[:is_link] %>
+          <% case item[:type] %>
+          <% when 'link' %>
             <li>
               <%= link_to item[:label], item[:path], class: "dropdown-link hoverable" %>
             </li>
-          <% else %>
+          <% when 'label' %>
             <li class="dropdown-link">
               <%= item[:label] %>
+            </li>
+          <% when 'button_to' %>
+            <li>
+              <%= button_to item[:label], item[:path], method: item[:method], class: "dropdown-link" %>
             </li>
           <% end %>
         <% end %>

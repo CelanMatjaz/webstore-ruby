@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   post '/auth/register', to: 'auth#register'
   post '/auth/logout', to: 'auth#logout'
 
+  get '/product-group/:id' => 'product_group#show_groups'
+  get '/products/:id' => 'product_group#show_subgroups'
+
+  namespace :product do
+    get '/:id', action: 'show'
+  end
+
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
 

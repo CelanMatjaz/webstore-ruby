@@ -1,50 +1,46 @@
-<nav class="p-4 bg-sky-500">
-  <div class="container">
+<nav class="p-2 bg-sky-500">
+  <div class="container relative">
 
+    <ul class="inline-block right-0 navbar-list">
+        <li class="inline-block"><%= link_to "Home", root_path, class: "nav-link text-gray-700 hover:bg-transparent" %></li>
 
-    <%= render 'layouts/dropdown', title: "Test", groups: [
-      {
-        title: 'Group 1',
-        items: [
-          { is_link: true, label: 'Test text 1', path: '/' },
-          { is_link: false, label: 'Test text 2' },
-        ],
-      },
-      {
-        title: 'Group 2',
-        items: [
-          { is_link: true, label: 'Test text 1', path: '/' },
-          { is_link: false, label: 'Test text 2' },
-        ],
-      },
-    ] %>
+        <% items = [] %>
+        <% ProductGroup.all.each do |group| %>
+          <% items.append({ label: group.name, type: 'link', path: "/product-group/%{id}" % { id: group.id } }) %>
+        <% end %>
+        <li><%= render 'layouts/dropdown', title: 'Products', groups: [{ items: items }] %></li>
+    </ul>
 
-
-    <ul class="inline-block right-0">
-
-      <li class="inline-block"><%= link_to "Home", root_path, class: "p-2 rounded text-gray-700" %></li>
+    <ul class="inline-block absolute right-0 navbar-list">
+      <% if session[:user_id] %>
+        <li>
+          <span class="nav-link hover:bg-transparent hover:text-black">
+            Welcome, <strong><%= session[:username] %></strong>
+          </span>
+        </li>
+      <% end %>
 
       <% if session[:user_id] && session[:is_admin] %>
 
-      <li class="inline-block right-0">
-        Welcome, <strong><%= session[:username] %></strong>
-      </li>
-
-      <li class="inline-block"><%= link_to "Dashboard", admin_dashboard_path, class: "nav-link" %></li>
-      <li class="inline-block"><%= link_to "Users", admin_users_path, class: "nav-link" %></li>
-      <li class="inline-block"><%= link_to "Products", admin_products_path, class: "nav-link" %></li>
+        <li class="inline-block"><%= render 'layouts/dropdown', title: 'Dashboard', groups: [{ items: [
+          { type: 'link', label: "Dashboard", path: admin_dashboard_path },
+          { type: 'link', label: "Users", path: admin_users_path },
+          { type: 'link', label: "Products", path: admin_products_path },
+        ] }] %></li>
 
       <% end %>
 
       <% if session[:user_id] %>
 
-        <li class="inline-block"><%= link_to "Account", admin_users_path, class: "nav-link" %></li>
-        <li class="inline-block"><%= button_to "Logout", auth_logout_path, method: "post", class: "nav-link" %></li>
+        <li><%= render 'layouts/dropdown', title: 'Account', groups: [{ items: [
+          { type: 'link', label: "Settings", path: admin_dashboard_path },
+          { type: 'button_to', label: "Logout", path: auth_logout_path, method: 'post' },
+        ] }] %></li>
 
       <% else %>
 
-        <li class="inline-block"><%= link_to "Register", register_path, class: "nav-link" %></li>
-        <li class="inline-block"><%= link_to "Login", login_path, class: "nav-link" %></li>
+        <li><%= link_to "Register", register_path, class: "nav-link" %></li>
+        <li><%= link_to "Login", login_path, class: "nav-link" %></li>
 
       <% end %>
 

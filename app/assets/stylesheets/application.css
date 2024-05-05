@@ -14,6 +14,10 @@
  *= require_self
  */
 
+body {
+    min-width: 360px;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -41,4 +45,24 @@
     border-right: var(--dropdown-arrow-size) solid black;
     display: inline-block;
     transform: translateX(-4px);
+}
+
+.item-card {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.item-card>img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.item-card>div {
+    display: flex;
+    height: 20%;
+    align-items: center;
 }

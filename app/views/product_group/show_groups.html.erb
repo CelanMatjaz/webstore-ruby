@@ -1,0 +1,16 @@
+<div>
+  <h1 class="font-bold text-4xl"><%= @group.name %></h1>
+
+  <div class="items-container">
+    <% @group.product_subgroups.each do |subgroup| %>
+      <a href="/products/<%= "%{id}" % { id: subgroup.id } %>">
+        <div class="item-card">
+            <%= image_tag(subgroup.image_url) %> 
+          <div class="justify-center">
+            <%= subgroup.name %>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
+</div>

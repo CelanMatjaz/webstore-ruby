@@ -4,7 +4,11 @@
 
 @layer components {
     .nav-link {
-        @apply inline-block p-2 hover:bg-sky-700 hover:text-white rounded;
+        @apply inline-block px-2 py-1 hover:bg-sky-700 hover:text-white rounded;
+    }
+
+    .navbar-list > li {
+        @apply inline-block;
     }
 
     .button {
@@ -47,11 +51,11 @@
     }
 
     .dropdown-list {
-        @apply hidden relative left-0 bg-white rounded min-w-full overflow-x-hidden border border-gray-400;
+        @apply hidden relative right-0 bg-white rounded min-w-full overflow-x-hidden border border-gray-400;
     }
 
     .dropdown-list>* {
-        @apply p-1 bg-white px-2 hover:bg-sky-300;
+        @apply p-1 bg-white px-2 hover:bg-sky-300 border border-gray-200;
     }
 
     .dropdown.show-dropdown .dropdown-list {
@@ -68,5 +72,18 @@
 
     .dropdown-link.hoverable {
         @apply hover:bg-sky-300 inline-block;
+    }
+
+    /* ITEM CLASSES */
+    .items-container {
+        @apply mt-5 grid gap-6 justify-center grid-cols-1 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2;
+    }
+
+    .items-container>a {
+        @apply flex justify-center hover:underline;
+    }
+
+    .items-container .item-card {
+        @apply rounded border border-gray-300 p-2;
     }
 }

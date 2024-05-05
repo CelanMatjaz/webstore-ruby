@@ -1,0 +1,20 @@
+<div>
+  <h1 class="font-bold text-4xl"><%= @group.name %></h1>
+
+  <% if @group.products.count == 0 %>
+    <p class="mt-4">There are currently no products for this category.</p>
+  <% end%>
+
+  <div class="items-container">
+    <% @group.products.each do |product| %>
+      <a href="<%= product_path(product.id) %>">
+        <div class="item-card">
+            <%= image_tag(product.image_url) %> 
+          <div class="justify-center">
+            <%= product.name %>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
+</div>
