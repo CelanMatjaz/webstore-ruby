@@ -10,11 +10,5 @@ class CreateProductPrices < ActiveRecord::Migration[7.1]
 
     add_index(:product_prices, %i[currency product_id], unique: true)
     add_check_constraint(:product_prices, "currency IN ('USD', 'EUR', 'GBP')", name: 'currency_check')
-
-    # execute <<-SQL
-    #   alter table product_prices
-    #     add constraint currency_check
-    #     CHECK currency IN ()
-    # SQL
   end
 end
