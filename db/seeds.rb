@@ -8,8 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create!(username: 'admin', email: 'admin@admin.com', password: 'password',
-             password_confirmation: 'password', is_admin: true)
+User.create(username: 'admin', email: 'admin@admin.com', password: 'password',
+            password_confirmation: 'password', is_admin: true)
+
+User.create(username: 'testuser1', email: 'test1@test.com', password: 'password',
+            password_confirmation: 'password', is_admin: false)
+User.create(username: 'testuser2', email: 'test2@test.com', password: 'password',
+            password_confirmation: 'password', is_admin: false)
+User.create(username: 'testuser3', email: 'test3@test.com', password: 'password',
+            password_confirmation: 'password', is_admin: false)
 
 group1 = ProductGroup.create!(name: 'Computer & Accessories', image_url: '/product_groups/laptop.jpg')
 group2 = ProductGroup.create!(name: 'Books', image_url: '/product_groups/fiction_book.png')
@@ -27,11 +34,17 @@ ProductSubgroup.create!(name: 'CDs', product_group: group3, image_url: '/product
 ProductSubgroup.create!(name: 'DVDs', product_group: group3, image_url: '/product_groups/dvd.jpg')
 ProductSubgroup.create!(name: 'Blu-ray', product_group: group3, image_url: '/product_groups/bluray.png')
 
+require 'faker'
+
 [group1, group2, group3].each do |group|
   group.product_subgroups.each do |subgroup|
     i = 1
     while i < 10
-      subgroup.products.create!(name: "#{subgroup.name}#{i}", quantity: 100, image_url: subgroup[:image_url])
+      product = subgroup.products.create!(name: "#{subgroup.name}#{i}", quantity: 100, image_url: subgroup[:image_url],
+                                          description: Faker::Lorem.paragraph_by_chars(number: 2048))
+      product.product_prices.create!(price: Random.rand(100), currency: 'EUR', symbol: '€')
+      product.product_prices.create!(price: Random.rand(100), currency: 'USD', symbol: '$')
+      product.product_prices.create!(price: Random.rand(100), currency: 'GBP', symbol: '£')
       i += 1
     end
   end

@@ -25,7 +25,7 @@
           <td class="p-2"><%= localize(user.updated_at, :format => :long) %> (UTC)</td>
           <td class="p-2"><%= user.is_email_validated %></td>
           <td class="p-2"><%= user.is_admin %></td>
-          <td class="p-2"><%= button_to "Delete", { id: user.id }, method: :delete, class: "button" %></td>
+          <td class="p-2"><%= button_to "Delete", { action: "delete", id: user.id }, method: :delete, data: { confirm: "Are you sure?" }, class: 'button' %></td>
         </tr>
       <% end %>
     </tbody>

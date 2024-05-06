@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_05_010058) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_06_192536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,11 +64,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_010058) do
   end
 
   create_table "product_prices", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.bigint "product_id"
     t.decimal "price", null: false
     t.string "currency", null: false
+    t.string "symbol", default: "", null: false
     t.index ["currency", "product_id"], name: "index_product_prices_on_currency_and_product_id", unique: true
     t.index ["product_id"], name: "index_product_prices_on_product_id"
     t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "currency_check"
@@ -91,6 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_05_010058) do
     t.integer "quantity"
     t.string "image_url", limit: 64
     t.bigint "product_subgroup_id"
+    t.text "description", default: "", null: false
     t.index ["product_subgroup_id"], name: "index_products_on_product_subgroup_id"
   end
 

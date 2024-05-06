@@ -34,6 +34,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def check_if_admin
-    redirect_to root_path if session[:user].nil? || !session[:user][:is_admin]
+    redirect_to root_path if session[:user].nil? || !session[:is_admin]
   end
 end
