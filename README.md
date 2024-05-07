@@ -30,7 +30,7 @@ Rename `example.env` in project root to `.env` and change the database connectio
 
 If you wish to change database connections settings, you can edit the `config\database.yml` file to suit your needs.
 
-To run the app, run `docker compose up` in project root. This will setup the database and Rails app containers and start the app, which is accessible on [`http://localhost:3000`](`http://localhost:3000`) by default.
+To run the app, run `docker compose up` in project root. This will setup the database and Rails app containers and start the app, which is accessible on [`http://localhost:3000`](http://localhost:3000) by default.
 
 Database is automatically seeded in the `development` environment. Database seeds are located in `db/seeds.rb`, which can be changed. 
 
