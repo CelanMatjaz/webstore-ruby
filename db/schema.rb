@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_220248) do
     t.integer "quantity", default: 1, null: false
     t.decimal "price", null: false
     t.string "currency", null: false
-    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying, 'EUR'::character varying, 'GBP'::character varying]::text[])", name: "currency_check"
+    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "currency_check"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_06_220248) do
     t.string "symbol", default: "", null: false
     t.index ["currency", "product_id"], name: "index_product_prices_on_currency_and_product_id", unique: true
     t.index ["product_id"], name: "index_product_prices_on_product_id"
-    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying, 'EUR'::character varying, 'GBP'::character varying]::text[])", name: "currency_check"
+    t.check_constraint "currency::text = ANY (ARRAY['USD'::character varying::text, 'EUR'::character varying::text, 'GBP'::character varying::text])", name: "currency_check"
   end
 
   create_table "product_subgroups", force: :cascade do |t|
