@@ -84,7 +84,7 @@
     }
 
     .items-container>div>a {
-        @apply flex justify-center hover:underline;
+        @apply hover:underline;
     }
 
     .items-container .item-card {
