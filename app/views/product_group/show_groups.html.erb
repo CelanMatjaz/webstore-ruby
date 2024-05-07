@@ -5,7 +5,9 @@
     <% @group.product_subgroups.each do |subgroup| %>
       <a href="/products/<%= "%{id}" % { id: subgroup.id } %>">
         <div class="item-card">
-            <%= image_tag(subgroup.image_url) %> 
+          <div style="height: 200px; overflow: hidden;">
+            <%= image_tag(subgroup.image_url) %>
+          </div> 
           <div class="justify-center">
             <%= subgroup.name %>
           </div>

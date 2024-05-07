@@ -4,10 +4,6 @@
     <%= render 'auth/messages' %>
     <%= render 'auth/errors' %>
 
-    <% if @user.addresses.count == 0 %>
-      <div>No addresses</div>
-    <% end %>
-
     <% @user.addresses.each do |address| %>
       <%= render 'address', { address: address } %>
     <% end %>

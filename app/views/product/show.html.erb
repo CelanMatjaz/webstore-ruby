@@ -3,7 +3,7 @@
     <div class="col-span-1">
       <%= image_tag(@product.image_url, class: 'mb-4 mx-auto', height: '200', style: 'max-height: 300px') %>
       <div class="flex justify-center">
-        <span class="text-xl mx-auto"><%= @product.get_price('USD') %> USD</span>
+        <span class="text-xl mx-auto"><%= @product.get_price(session[:currency] || 'USD') %> <%= session[:currency] %></span>
       </div>
       <div>
         <button class="secondary-button bg-yellow-400 border-2 border-orange-500 hover:border-yellow-400 mx-auto block">Add to cart</button>

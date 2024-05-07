@@ -59,7 +59,7 @@
     }
 
     .dropdown-list>* {
-        @apply p-1 bg-white px-2 hover:bg-sky-300 border border-gray-200;
+        @apply bg-white hover:bg-sky-300 border border-gray-200;
     }
 
     .dropdown.show-dropdown .dropdown-list {
@@ -71,7 +71,7 @@
     }
 
     .dropdown-link {
-        @apply w-full select-none;
+        @apply w-full p-1 px-2 select-none;
     }
 
     .dropdown-link.hoverable {
