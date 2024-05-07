@@ -15,6 +15,14 @@ Rails.application.routes.draw do
   namespace :account do
     get 'settings', to: 'settings#show'
     patch 'settings/:id', to: 'settings#edit'
+
+    get 'addresses', to: 'address#show'
+    get 'addresses/create', to: 'address#show_create'
+    get 'addresses/update/:id', to: 'address#show_update'
+
+    post 'addresses', to: 'address#create'
+    patch 'addresses/:id', to: 'address#update'
+    delete 'addresses/:id', to: 'address#delete'
   end
 
   namespace :admin do

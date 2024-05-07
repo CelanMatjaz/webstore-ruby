@@ -1,5 +1,5 @@
-<div>
-    <%= form_with(model: @account_settings, url: "/account/settings/#{@account_settings.id}", class: "max-w-xl mx-auto") do |form| %>
+<div class="max-w-xl mx-auto">
+  <%= form_with(model: @account_settings, url: "/account/settings/#{@account_settings.id}", class: "") do |form| %>
     <%= render 'auth/messages' %>
     <%= render 'auth/errors' %>
 
@@ -18,5 +18,10 @@
     <div class="mb-4">
       <button class="button p-2" type="submit">Save</button>
     </div>
+
   <% end %>
+
+  <div class="max-w-xl mx-auto">
+    <%= link_to "Manage addresses", account_addresses_path, class: 'secondary-button' %>
+  </div>
 </div>

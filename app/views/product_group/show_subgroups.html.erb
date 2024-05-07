@@ -15,7 +15,7 @@
             <%= image_tag(product.image_url) %> 
             <div class="justify-center flex-col m-1">
               <div><%= product.name %></div>
-              <div><%= product.get_price('USD') %> USD</div>
+              <div><%= product.get_price(session[:currency] ||'USD') %> <%= session[:currency] %></div>
             </div>
           </div>
         </a>

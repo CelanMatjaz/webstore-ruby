@@ -1,0 +1,13 @@
+<div class="p-2 border border-gray-400 rounded relative mb-2">
+  <div>
+    <%= ISO3166::Country[address.country] %>, <%= address.city %>, Zip: <%= address.zip_code %>
+  </div>
+  <div>
+    <%= address.street %>, <%= address.house_number %>
+  </div>
+
+  <div class="absolute top-2 right-2 flex gap-2">
+    <%= link_to 'Edit', "/account/addresses/update/#{address.id}", action: 'show_update', class: "secondary-button" %>
+    <%= button_to 'Delete', "/account/addresses/#{address.id}", action: 'delete', method: 'delete', class: "secondary-button", data: { confirm: "Are you sure?" } %>
+  </div>
+</div>

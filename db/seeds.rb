@@ -10,12 +10,12 @@
 
 admin = User.create!(username: 'admin', email: 'admin@admin.com', password: 'password',
                      password_confirmation: 'password', is_admin: true)
-admin.account_settings = AccountSettings.create!(display_name: 'Admin', currency: 'EUR')
+admin.create_account_settings!(user_id: admin.id, display_name: 'Admin', currency: 'EUR')
 
 [1, 2, 3].each do |i|
   user = User.create!(username: "testuser#{i}", email: "test#{i}@test.com", password: 'password',
                       password_confirmation: 'password', is_admin: false)
-  user.account_settings = AccountSettings.create!(display_name: "TestUser#{i}", currency: 'EUR')
+  user.create_account_settings!(display_name: "TestUser#{i}", currency: 'EUR')
 end
 
 group1 = ProductGroup.create!(name: 'Computer & Accessories', image_url: '/product_groups/laptop.jpg')

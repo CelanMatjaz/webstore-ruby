@@ -11,6 +11,7 @@ class Account::SettingsController < ApplicationController
     respond_to do |format|
       if @account_settings.update(update_params)
         session[:username] = @account_settings.display_name
+        session[:currency] = @account_settings.currency
         format.html do
           redirect_to account_settings_path, notice: 'Settings succesfully saved!'
         end
@@ -25,9 +26,5 @@ class Account::SettingsController < ApplicationController
 
   def update_params
     params.require(:account_settings).permit(:display_name, :currency)
-  end
-
-  def id
-    params.require(:id)
   end
 end

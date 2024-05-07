@@ -1,0 +1,38 @@
+<%= form_with(model: address, url: url, method: method, class: "") do |form| %>
+  <%= render 'auth/messages' %>
+  <%= render 'auth/errors' %>
+
+  <div class="mb-4">
+    <%= label :address, :country, class: "block mb-2" %>
+    <%= form.country_select :country, { include_blank: 'Select a country' }, { class: "w-full rounded py-2 px-3" } %>
+  </div>
+
+  <div class="grid gap-2 grid-cols-2">
+
+    <div class="mb-4">
+      <%= label :address, :city, class: "block mb-2" %>
+      <%= form.text_field :city, class: "w-full rounded" %>
+    </div>
+
+    <div class="mb-4">
+      <%= label :address, :zip_code, class: "block mb-2" %>
+      <%= form.number_field :zip_code, class: "w-full rounded" %>
+    </div>
+
+    <div class="mb-4">
+      <%= label :address, :street, class: "block mb-2" %>
+      <%= form.text_field :street, class: "w-full rounded" %>
+    </div>
+
+    <div class="mb-4">
+      <%= label :address, :house_number, class: "block mb-2" %>
+      <%= form.number_field :house_number, class: "w-full rounded" %>
+    </div>
+
+  </div>
+
+  <div class="mb-4">
+    <button class="button p-2" type="submit">Save</button>
+  </div>
+
+<% end %>

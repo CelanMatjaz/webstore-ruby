@@ -1,0 +1,5 @@
+<div class="max-w-xl mx-auto">
+    <h1 class="bold text-3xl mb-4">Create address</h1>
+
+    <%= render 'form', address: @address || Address.new, url: '/account/addresses', method: 'post' %>
+</div>

@@ -1,6 +1,6 @@
 <% if flash[:notice] %>
   <div id="messages-container" class="mb-2">
-    <div class="message bg-green-200 p-1 border-green-600 rounded border-solid border-2 mb-2 cursor-pointer"> <%= flash[:notice] %> </div>
+    <div class="message"> <%= flash[:notice] %> </div>
     <button class="button" onclick="document.getElementById('messages-container').remove();">
       Clear message
     </button>

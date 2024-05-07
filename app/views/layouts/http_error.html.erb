@@ -1,5 +1,6 @@
 <div>
   <h1 class="text-4xl mb-2">Error <%= error[:code] %></h1>
   <p class="strong"><%= error[:message] %></p>
+  <%= link_to "Back to home", root_path, class: 'secondary-button' %> 
 </div>
 

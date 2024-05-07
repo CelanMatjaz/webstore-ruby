@@ -1,0 +1,5 @@
+<div class="max-w-xl mx-auto">
+    <h1 class="bold text-3xl mb-4">Update address</h1>
+
+    <%= render 'form', address: @address, url: "/account/addresses/#{@address.id}", method: 'patch' %>
+</div>

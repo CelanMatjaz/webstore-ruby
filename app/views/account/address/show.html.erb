@@ -1,0 +1,16 @@
+<div class="max-w-xl mx-auto">
+    <h1 class="bold text-3xl mb-4">Addresses</h1>
+
+    <%= render 'auth/messages' %>
+    <%= render 'auth/errors' %>
+
+    <% if @user.addresses.count == 0 %>
+      <div>No addresses</div>
+    <% end %>
+
+    <% @user.addresses.each do |address| %>
+      <%= render 'address', { address: address } %>
+    <% end %>
+
+    <%= link_to "Add address", account_addresses_create_path, class: "secondary-button mt-2" %>
+</div>

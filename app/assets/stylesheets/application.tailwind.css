@@ -90,4 +90,12 @@
     .items-container .item-card {
         @apply rounded border border-gray-300 p-2;
     }
+
+    .error {
+        @apply bg-red-200 p-1 border-red-600 rounded border-solid border-2 mb-2 cursor-pointer;
+    }
+
+    .message {
+        @apply bg-green-200 p-1 border-green-600 rounded border-solid border-2 mb-2 cursor-pointer;
+    }
 }
