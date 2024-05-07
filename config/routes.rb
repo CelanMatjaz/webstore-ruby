@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     get '/:id', action: 'show'
   end
 
+  namespace :account do
+    get 'settings', to: 'settings#show'
+    patch 'settings/:id', to: 'settings#edit'
+  end
+
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
 

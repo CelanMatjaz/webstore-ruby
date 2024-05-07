@@ -8,15 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-User.create(username: 'admin', email: 'admin@admin.com', password: 'password',
-            password_confirmation: 'password', is_admin: true)
+admin = User.create!(username: 'admin', email: 'admin@admin.com', password: 'password',
+                     password_confirmation: 'password', is_admin: true)
+admin.account_settings = AccountSettings.create!(display_name: 'Admin', currency: 'EUR')
 
-User.create(username: 'testuser1', email: 'test1@test.com', password: 'password',
-            password_confirmation: 'password', is_admin: false)
-User.create(username: 'testuser2', email: 'test2@test.com', password: 'password',
-            password_confirmation: 'password', is_admin: false)
-User.create(username: 'testuser3', email: 'test3@test.com', password: 'password',
-            password_confirmation: 'password', is_admin: false)
+[1, 2, 3].each do |i|
+  user = User.create!(username: "testuser#{i}", email: "test#{i}@test.com", password: 'password',
+                      password_confirmation: 'password', is_admin: false)
+  user.account_settings = AccountSettings.create!(display_name: "TestUser#{i}", currency: 'EUR')
+end
 
 group1 = ProductGroup.create!(name: 'Computer & Accessories', image_url: '/product_groups/laptop.jpg')
 group2 = ProductGroup.create!(name: 'Books', image_url: '/product_groups/fiction_book.png')
@@ -42,9 +42,9 @@ require 'faker'
     while i < 10
       product = subgroup.products.create!(name: "#{subgroup.name}#{i}", quantity: 100, image_url: subgroup[:image_url],
                                           description: Faker::Lorem.paragraph_by_chars(number: 2048))
-      product.product_prices.create!(price: Random.rand(100), currency: 'EUR', symbol: '€')
-      product.product_prices.create!(price: Random.rand(100), currency: 'USD', symbol: '$')
-      product.product_prices.create!(price: Random.rand(100), currency: 'GBP', symbol: '£')
+      product.product_prices.create!(price: Random.rand(100), currency: 'EUR')
+      product.product_prices.create!(price: Random.rand(100), currency: 'USD')
+      product.product_prices.create!(price: Random.rand(100), currency: 'GBP')
       i += 1
     end
   end

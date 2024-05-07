@@ -24,9 +24,9 @@ class AuthController < ApplicationController
 
   def register
     @user = User.new(user_params)
+    @settings = @user.account_settings.new(display_name: @user.username, currency: 'EUR')
     respond_to do |format|
-      if @user.save
-        @messages = ['User registered']
+      if @user.save && @settings.save
         format.html { redirect_to login_path, notice: 'New user registered' }
       else
         @errors = @user.errors.full_messages
